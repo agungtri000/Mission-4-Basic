@@ -1,0 +1,632 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 8px;
+}
+.user-text h1 {
+    color: #000;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.user-text p {
+    color: #8E8E8E;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    gap: 8px;
+}
+
+.full-date {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.time { 
+    color: #8E8E8E;
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Main Card */
+.main-card {
+    padding: 32px;
+    border-radius: 24px;
+}
+
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.calendar-nav h2 {
+    color: #000;
+    text-align: center;
+    font-family: 'inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.nav-btn {
+    background: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.1);
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+}
+
+.nav-btn svg {
+    transform: rotate(90deg);
+}
+
+.nav-btn.next svg {
+    transform: rotate(-90deg);
+}
+
+/* Calendar Row */
+.calendar-row {
+    border-top: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 28px 0;
+    margin-bottom: 24px;
+}
+
+.calendar-days {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 5px 0px;
+}
+
+.calendar-days::-webkit-scrollbar { display: none; }
+
+.day-item {
+    min-width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    gap: 8px;
+}
+
+.day-item.active {
+    border: 2px solid #000;
+}
+
+.day-item span:first-child { 
+    color: #8E8E8E;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.day-item span:last-child { 
+    color: var(--Surface-Black-black-7, #8E8E8E);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.day-item.active span:first-child { 
+    color: #040404;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.day-item.active span:last-child { 
+    color: #040404;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+/* Tasks */
+.tasks {
+    max-height: 400px; 
+    min-height: 400px;     
+    overflow-y: auto;
+    padding-right: 8px; 
+}
+
+.tasks::-webkit-scrollbar {
+    width: 4px;
+}
+
+.tasks::-webkit-scrollbar-thumb {
+    background: #d9d9d9;
+    border-radius: 4px;
+}
+
+.tasks::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.task-list-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.delete-all {
+    color: var(--Danger-Red-red-6, #C23004);
+    text-align: right;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border: none;
+    background: none;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.task-item:last-child { border-bottom: none; }
+
+.task-content {
+    display: flex;
+    gap: 24px;
+    flex: 1;
+}
+
+.checkbox {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 2px solid #040404;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox img {
+    width: 9px;
+    height: 10px;
+    display: block;
+}
+
+.task-info p {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* checkbox kosong (task aktif) */
+.task-item .checkbox {
+    background: #fff;
+    border: 2px solid #040404;
+}
+
+/* hover biar keliatan bisa diklik */
+.task-item .checkbox:hover {
+    background: #f2f2f2;
+}
+
+/* sembunyikan icon check di task aktif */
+.task-item .checkbox img {
+    display: none;
+}
+
+/* munculkan icon hanya jika task completed */
+.task-item.completed .checkbox img {
+    display: block;
+}
+
+.task-item.completed .task-info p {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.task-item .checkbox:active {
+    transform: scale(0.95);
+}
+
+.priority {
+    display: inline-block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.priority.low { background: #daf3e2; color: #2bbb5b; }
+.priority.medium { background: #fff1cd; color: #fdc52e; }
+.priority.high { background: #f0cdc3; color: #c23004; }
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+/* Bottom Actions */
+.bottom-actions {
+    margin-top: 28px;
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.1);
+}
+
+.bottom-actions button {
+    flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-outline {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+.btn-solid {
+    background: #000;
+    color: #fff;
+    border: none;
+}
+
+/* Latar belakang transparan di belakang modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+/* Kartu Modal Utama */
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 936px; /* Sesuai lebar di design figma */
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.modal-title {
+    color: #000;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #040404;
+}
+
+/* Wrapper untuk input dan icon */
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.form-input {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    font-size: 14px;
+    outline: none;
+    background: #fff;
+}
+
+.form-input:focus {
+    border-color: #040404;
+}
+
+/* Khusus Textarea */
+.text-area {
+    border-color: #c0c0c0;
+    height: 120px;
+    resize: none;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.text-area::placeholder {
+    color: #8e8e8e;
+}
+
+
+.input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Dropdown Priority */
+.priority-select {
+    appearance: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 16px; 
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* warna berdasarkan value */
+.priority-select.low {
+    color: #2bbb5b;
+}
+
+.priority-select.medium {
+    color: #fdc52e;
+}
+
+.priority-select.high {
+    color: #c23004;
+}
+
+/* Tombol Aksi */
+.form-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    flex: 1;
+    height: 52px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+.btn:active {
+    opacity: 0.8;
+}
+
+.btn-cancel {
+    background: #fff;
+    color: #040404;
+    border: 1px solid #040404;
+}
+
+.btn-submit {
+    background: #040404;
+    color: #fff;
+}
+
+
+/* ===== COMPLETED MODAL FIX ===== */
+
+.completed-task-list {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-right: 4px;
+}
+
+.completed-task-list::-webkit-scrollbar {
+    width: 0;
+}
+
+.completed-item {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid #d9d9d9;
+    align-items: flex-start;
+}
+
+.completed-item:last-child {
+    border-bottom: none;
+}
+
+.completed-item .checkbox {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #040404;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.completed-item .checkbox img {
+    width: 9px;
+    height: 10px;
+}
+
+.completed-item .task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.completed-item .task-name {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* Priority tag */
+.priority-tag {
+    display: inline-flex;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.priority-tag.low { background: #daf3e2; color: #2bbb5b; }
+.priority-tag.medium { background: #fff1cd; color: #fdc52e; }
+.priority-tag.high { background: #f0cdc3; color: #c23004; }
+
+/* Close button */
+#closeCompletedBtn {
+    width: 100%;
+    height: 52px;
+    background: #040404;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.plus { font-size: 24px; line-height: 0; }

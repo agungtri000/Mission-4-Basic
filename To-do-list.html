@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Design</title>
+    <link rel="stylesheet" href="To-do-list.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="To-do-list.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header card">
+            <div class="user-info">
+                <img src="./Asset-image/oliver-pict.jfif" alt="Profile" class="avatar">
+                <div class="user-text">
+                    <h1>Oliver Sykes</h1>
+                    <p>UI/UX Designer</p>
+                </div>
+            </div>
+            <div class="date-info">
+                <p class="full-date">Saturday, 12 November 2026</p>
+                <p class="time">17:25:42</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-card card">
+            <!-- Calendar Navigation -->
+            <div class="calendar-nav">
+                <button class="nav-btn" id="prevMonth">
+                    <img src="./Asset-image/right-left.png" alt="">
+                </button>
+                <h2 id="monthTitle">November 2025</h2>
+                <button class="nav-btn next" id="nextMonth">
+                    <img src="./Asset-image/right-arrow.png" alt="">
+                </button>
+            </div>
+
+            <!-- Calendar Row -->
+            <div class="calendar-row">
+                <div class="calendar-days" id="calendarDays"></div>
+            </div>
+
+            <!-- Task List -->
+            <div class="task-list-header">
+                <button class="delete-all" id="deleteAllBtn">Delete All</button>
+            </div>
+
+            <div class="tasks" id="taskList"></div>
+        </main>
+
+        <!-- Footer Actions -->
+        <div class="bottom-actions">
+            <button class="btn-outline" id="viewCompletedBtn">
+                <img src="./Asset-image/view-completed-icon.svg" alt="">
+                View Completed
+            </button>
+            <button class="btn-solid" id="openModal">
+                <img src="./Asset-image/add-icon.svg" alt="">
+                Add Schedule
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Overlay (Latar Belakang Gelap) -->
+    <div class="modal-overlay" id="addModal">
+        <!-- Kontainer Modal -->
+        <div class="modal-card">
+            <h1 class="modal-title">Add New Schedule</h1>
+
+            <form class="modal-form" id="addTaskForm">
+                
+                <!-- Date and Priority Row -->
+                <div class="form-row">
+                    <!-- Date -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Date</label>
+                        <div class="input-wrapper icon-right">
+                            <input type="date" class="form-input" id="taskDate">
+                        </div>
+                        
+                    </div>
+
+                    <!-- Priority -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Priority</label>
+                        <div class="input-wrapper icon-right select-wrapper">
+                            <select class="form-input priority-select" id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                            <svg class="input-icon chevron" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M13 5.5L8 10.5L3 5.5" stroke="#040404" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Description -->
+                <div class="form-group">
+                    <label class="form-label">Task Description</label>
+                    <div class="input-wrapper">
+                        <textarea placeholder="Writing Your Notes Here..." class="form-input text-area" id="taskDescription" ></textarea>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Overlay -->
+    <div class="modal-overlay" id="completedModalOverlay">
+        <!-- Modal Card -->
+        <div class="modal-card">
+            <h1 class="modal-title">Schedule Completed</h1>
+
+            <!-- Scrollable Task List -->
+            <div class="completed-task-list" id="completedTaskList">
+                
+            </div>
+
+            <!-- Close Button -->
+            <button class="close-btn" id="closeCompletedBtn">Close</button>
+        </div>
+    </div>
+</body>
+</html>
